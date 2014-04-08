@@ -1,0 +1,113 @@
+00000000 (Not Committed Yet 2014-04-08 18:11:45 +0900   1) /****************GIT prectice****************/
+f5e249f0 (jungranLee        2014-04-08 18:04:20 +0900   2) #include <stdio.h>
+f5e249f0 (jungranLee        2014-04-08 18:04:20 +0900   3) #include <stdlib.h>
+f5e249f0 (jungranLee        2014-04-08 18:04:20 +0900   4) 
+f5e249f0 (jungranLee        2014-04-08 18:04:20 +0900   5) #define TRUE 1
+f5e249f0 (jungranLee        2014-04-08 18:04:20 +0900   6) #define FALSE 0
+f5e249f0 (jungranLee        2014-04-08 18:04:20 +0900   7) 
+f5e249f0 (jungranLee        2014-04-08 18:04:20 +0900   8) typedef struct domain{
+f5e249f0 (jungranLee        2014-04-08 18:04:20 +0900   9) 	int size;
+f5e249f0 (jungranLee        2014-04-08 18:04:20 +0900  10) 	int *value;
+f5e249f0 (jungranLee        2014-04-08 18:04:20 +0900  11) }Domain;
+f5e249f0 (jungranLee        2014-04-08 18:04:20 +0900  12) 
+f5e249f0 (jungranLee        2014-04-08 18:04:20 +0900  13) int isOddNumber(int value); //홀수임을 증명
+f5e249f0 (jungranLee        2014-04-08 18:04:20 +0900  14) int isPrimeNumber(int value); //소수임을 증명
+f5e249f0 (jungranLee        2014-04-08 18:04:20 +0900  15) int isGreaterThan10(int value); //10이상
+f5e249f0 (jungranLee        2014-04-08 18:04:20 +0900  16) 
+f5e249f0 (jungranLee        2014-04-08 18:04:20 +0900  17) int universal(Domain* domain,int (*prove) (int));
+f5e249f0 (jungranLee        2014-04-08 18:04:20 +0900  18) int existential(Domain* domain,int (*prove) (int));
+f5e249f0 (jungranLee        2014-04-08 18:04:20 +0900  19) 
+f5e249f0 (jungranLee        2014-04-08 18:04:20 +0900  20) int main(int argc, char* argv[]){
+f5e249f0 (jungranLee        2014-04-08 18:04:20 +0900  21) 	Domain* d=0x00L;
+f5e249f0 (jungranLee        2014-04-08 18:04:20 +0900  22) 	int i=0;
+f5e249f0 (jungranLee        2014-04-08 18:04:20 +0900  23) 
+f5e249f0 (jungranLee        2014-04-08 18:04:20 +0900  24) 	d=(Domain *)malloc(sizeof(Domain));
+f5e249f0 (jungranLee        2014-04-08 18:04:20 +0900  25) 	d->size = 5;
+f5e249f0 (jungranLee        2014-04-08 18:04:20 +0900  26) 	d->value=(int *)malloc(sizeof(int)*(d->size));
+f5e249f0 (jungranLee        2014-04-08 18:04:20 +0900  27) 
+f5e249f0 (jungranLee        2014-04-08 18:04:20 +0900  28) 	/*Test1 - odd number
+f5e249f0 (jungranLee        2014-04-08 18:04:20 +0900  29) 	d->value[0]=10;
+f5e249f0 (jungranLee        2014-04-08 18:04:20 +0900  30) 	d->value[1]=12;
+f5e249f0 (jungranLee        2014-04-08 18:04:20 +0900  31) 	d->value[2]=15;
+f5e249f0 (jungranLee        2014-04-08 18:04:20 +0900  32) 	*/
+f5e249f0 (jungranLee        2014-04-08 18:04:20 +0900  33) 
+f5e249f0 (jungranLee        2014-04-08 18:04:20 +0900  34) 	/*Test2 - prime number
+f5e249f0 (jungranLee        2014-04-08 18:04:20 +0900  35) 	d->value[0]=4;
+f5e249f0 (jungranLee        2014-04-08 18:04:20 +0900  36) 	d->value[1]=6;
+f5e249f0 (jungranLee        2014-04-08 18:04:20 +0900  37) 	d->value[2]=7;
+f5e249f0 (jungranLee        2014-04-08 18:04:20 +0900  38) 	d->value[3]=8;
+f5e249f0 (jungranLee        2014-04-08 18:04:20 +0900  39) 	d->value[4]=9;
+f5e249f0 (jungranLee        2014-04-08 18:04:20 +0900  40) 	d->value[5]=11;
+f5e249f0 (jungranLee        2014-04-08 18:04:20 +0900  41) 	*/
+f5e249f0 (jungranLee        2014-04-08 18:04:20 +0900  42) 
+f5e249f0 (jungranLee        2014-04-08 18:04:20 +0900  43) 	/*isGreaterThan10*/
+f5e249f0 (jungranLee        2014-04-08 18:04:20 +0900  44) 	d->value[0]=10;
+f5e249f0 (jungranLee        2014-04-08 18:04:20 +0900  45) 	d->value[1]=11;
+f5e249f0 (jungranLee        2014-04-08 18:04:20 +0900  46) 	d->value[2]=12;
+f5e249f0 (jungranLee        2014-04-08 18:04:20 +0900  47) 	d->value[3]=13;
+f5e249f0 (jungranLee        2014-04-08 18:04:20 +0900  48) 	d->value[4]=14;
+f5e249f0 (jungranLee        2014-04-08 18:04:20 +0900  49) 	
+f5e249f0 (jungranLee        2014-04-08 18:04:20 +0900  50) 
+f5e249f0 (jungranLee        2014-04-08 18:04:20 +0900  51) 
+f5e249f0 (jungranLee        2014-04-08 18:04:20 +0900  52) 	printf("P(x) = x>10\n");
+f5e249f0 (jungranLee        2014-04-08 18:04:20 +0900  53) 	//printf("P(x) = x is odd integer.\n");
+f5e249f0 (jungranLee        2014-04-08 18:04:20 +0900  54) 	//printf("P(x) = x is prime number.\n");
+f5e249f0 (jungranLee        2014-04-08 18:04:20 +0900  55) 	printf("Domain is {10,11,12,13,14}.\n");
+f5e249f0 (jungranLee        2014-04-08 18:04:20 +0900  56) 
+f5e249f0 (jungranLee        2014-04-08 18:04:20 +0900  57) 
+f5e249f0 (jungranLee        2014-04-08 18:04:20 +0900  58) 	//Invoke the function "existential"
+f5e249f0 (jungranLee        2014-04-08 18:04:20 +0900  59) 	printf("For Some x, P(x) is %s\n",existential(d,isGreaterThan10) ? "true." : "false.");
+f5e249f0 (jungranLee        2014-04-08 18:04:20 +0900  60) 
+f5e249f0 (jungranLee        2014-04-08 18:04:20 +0900  61) 	//Universal the function "universal"
+f5e249f0 (jungranLee        2014-04-08 18:04:20 +0900  62) 	printf("For All x, P(x) is %s\n", universal(d,isGreaterThan10) ? "true." : "false.");
+f5e249f0 (jungranLee        2014-04-08 18:04:20 +0900  63) 
+f5e249f0 (jungranLee        2014-04-08 18:04:20 +0900  64) 	free(d->value);
+f5e249f0 (jungranLee        2014-04-08 18:04:20 +0900  65) 	free(d);
+f5e249f0 (jungranLee        2014-04-08 18:04:20 +0900  66) }
+f5e249f0 (jungranLee        2014-04-08 18:04:20 +0900  67) 
+f5e249f0 (jungranLee        2014-04-08 18:04:20 +0900  68) int isOddNumber(int value)
+f5e249f0 (jungranLee        2014-04-08 18:04:20 +0900  69) {
+f5e249f0 (jungranLee        2014-04-08 18:04:20 +0900  70) 	if(value%2==0)
+f5e249f0 (jungranLee        2014-04-08 18:04:20 +0900  71) 	{
+f5e249f0 (jungranLee        2014-04-08 18:04:20 +0900  72) 		return FALSE;
+f5e249f0 (jungranLee        2014-04-08 18:04:20 +0900  73) 	}
+f5e249f0 (jungranLee        2014-04-08 18:04:20 +0900  74) 	return TRUE;
+f5e249f0 (jungranLee        2014-04-08 18:04:20 +0900  75) }
+f5e249f0 (jungranLee        2014-04-08 18:04:20 +0900  76) int isPrimeNumber(int value)
+f5e249f0 (jungranLee        2014-04-08 18:04:20 +0900  77) {
+f5e249f0 (jungranLee        2014-04-08 18:04:20 +0900  78) 	int i=1;
+f5e249f0 (jungranLee        2014-04-08 18:04:20 +0900  79) 	for(i=1;i<value;++i) //소수판단
+f5e249f0 (jungranLee        2014-04-08 18:04:20 +0900  80) 	{
+f5e249f0 (jungranLee        2014-04-08 18:04:20 +0900  81) 		if(value%i==0)
+f5e249f0 (jungranLee        2014-04-08 18:04:20 +0900  82) 			return FALSE;
+f5e249f0 (jungranLee        2014-04-08 18:04:20 +0900  83) 	}
+f5e249f0 (jungranLee        2014-04-08 18:04:20 +0900  84) 	return TRUE;
+f5e249f0 (jungranLee        2014-04-08 18:04:20 +0900  85) }
+f5e249f0 (jungranLee        2014-04-08 18:04:20 +0900  86) int isGreaterThan10(int value) //10이상
+f5e249f0 (jungranLee        2014-04-08 18:04:20 +0900  87) {
+f5e249f0 (jungranLee        2014-04-08 18:04:20 +0900  88) 	return value>10;
+f5e249f0 (jungranLee        2014-04-08 18:04:20 +0900  89) }
+f5e249f0 (jungranLee        2014-04-08 18:04:20 +0900  90) int universal(Domain* domain,int(*prove) (int value))
+f5e249f0 (jungranLee        2014-04-08 18:04:20 +0900  91) {
+f5e249f0 (jungranLee        2014-04-08 18:04:20 +0900  92) 	int i=0;
+f5e249f0 (jungranLee        2014-04-08 18:04:20 +0900  93) 	for(i=0;i<domain->size;i++)
+f5e249f0 (jungranLee        2014-04-08 18:04:20 +0900  94) 	{
+f5e249f0 (jungranLee        2014-04-08 18:04:20 +0900  95) 		if(!(*prove)(domain->value[i])) //값이 하나라도 다르면 false
+f5e249f0 (jungranLee        2014-04-08 18:04:20 +0900  96) 		{
+f5e249f0 (jungranLee        2014-04-08 18:04:20 +0900  97) 			return FALSE;
+f5e249f0 (jungranLee        2014-04-08 18:04:20 +0900  98) 		}
+f5e249f0 (jungranLee        2014-04-08 18:04:20 +0900  99) 	}
+f5e249f0 (jungranLee        2014-04-08 18:04:20 +0900 100) 	return TRUE; //나머지 경우는 true
+f5e249f0 (jungranLee        2014-04-08 18:04:20 +0900 101) }
+f5e249f0 (jungranLee        2014-04-08 18:04:20 +0900 102) int existential(Domain* domain,int(*prove) (int value))
+f5e249f0 (jungranLee        2014-04-08 18:04:20 +0900 103) {
+f5e249f0 (jungranLee        2014-04-08 18:04:20 +0900 104) 	int i=0;
+f5e249f0 (jungranLee        2014-04-08 18:04:20 +0900 105) 	for(i=0;i<domain->size;i++)
+f5e249f0 (jungranLee        2014-04-08 18:04:20 +0900 106) 	{
+f5e249f0 (jungranLee        2014-04-08 18:04:20 +0900 107) 		if((*prove)(domain->value[i])) //하나라도 옳으면 true
+f5e249f0 (jungranLee        2014-04-08 18:04:20 +0900 108) 		{
+f5e249f0 (jungranLee        2014-04-08 18:04:20 +0900 109) 			return TRUE;
+f5e249f0 (jungranLee        2014-04-08 18:04:20 +0900 110) 		}
+f5e249f0 (jungranLee        2014-04-08 18:04:20 +0900 111) 	}
+f5e249f0 (jungranLee        2014-04-08 18:04:20 +0900 112) 	return FALSE; //나머지는 경우는 false
+f5e249f0 (jungranLee        2014-04-08 18:04:20 +0900 113) }

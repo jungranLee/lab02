@@ -1,3 +1,4 @@
+/****************GIT prectice****************/
 #include <stdio.h>
 #include <stdlib.h>
 
